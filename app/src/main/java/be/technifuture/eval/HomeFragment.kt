@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -39,6 +40,11 @@ class HomeFragment : Fragment() {
         expListViewModel.getBooks(requireContext()).observeForever {
             updateData(it)
         }
+
+        /*binding.addButton.setOnClickListener{
+            val direction = HomeFragmentDirections.actionHomeFragmentToAddFragment()
+            findNavController().navigate(direction)
+        }*/
     }
 
     fun updateData(expense: List<Expense>) {
