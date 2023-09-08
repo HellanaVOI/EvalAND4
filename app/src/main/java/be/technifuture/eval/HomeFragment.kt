@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import be.technifuture.eval.databinding.FragmentHomeBinding
-import be.technifuture.eval.model.Expense
+import be.technifuture.eval.model.ExpenseWithType
 import be.technifuture.eval.viewModel.ExpenseAdapter
 import be.technifuture.eval.viewModel.ExpenseListViewModel
 
@@ -19,7 +19,16 @@ class HomeFragment : Fragment() {
     lateinit var binding: FragmentHomeBinding
     private lateinit var expListViewModel: ExpenseListViewModel
     private lateinit var adapter: ExpenseAdapter
-    private var listExpense = mutableListOf<Expense>()
+    //private var listExpense = mutableListOf<ExpenseWithType>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        expListViewModel = ViewModelProvider(this)[ExpenseListViewModel::class.java]
+        expListViewModel.getExpense(requireContext()).observeForever {
+            updateData(it)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,18 +43,7 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        expListViewModel = ViewModelProvider(this)[ExpenseListViewModel::class.java]
-        expListViewModel.getBooks(requireContext()).observeForever {
-            updateData(it)
-        }
-
-
-    }
-
-    private fun updateData(expense: List<Expense>) {
+    private fun updateData(expense: List<ExpenseWithType>) {
         adapter = ExpenseAdapter(expense.toMutableList())
         binding.recycleView.layoutManager = LinearLayoutManager(
             context,

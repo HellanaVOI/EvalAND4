@@ -16,3 +16,12 @@ data class Expense(
     val value: Float? = null,
     val type: Long? = null
 )
+
+data class ExpenseWithType(
+    @Embedded val exp: Expense,
+    @Relation(
+        parentColumn = "expId",
+        entityColumn = "typeId"
+    )
+    val type: ExpenseType?
+)

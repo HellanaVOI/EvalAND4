@@ -35,43 +35,33 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/amount"
-            android:inputType="number"/>
+            android:inputType="numberDecimal"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/dateTextInput"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+
+    <TextView
+        android:id="@+id/dateText"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
         app:boxBackgroundColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/amountTextInput">
+        app:layout_constraintTop_toBottomOf="@id/amountTextInput"
+        android:hint="@string/date" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/dateText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/date"
-            android:inputType="number"
-          />
-    </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/typeTextInput"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+    <TextView
+        android:id="@+id/typeText"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
         app:boxBackgroundColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dateTextInput">
+        app:layout_constraintTop_toBottomOf="@id/dateText"
+            android:hint="@string/type" />
 
-        <TextView
-            android:id="@+id/typeText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/type"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/addButton"

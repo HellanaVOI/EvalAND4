@@ -4,25 +4,28 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import be.technifuture.eval.databinding.CellExpenseBinding
-import be.technifuture.eval.model.Expense
-import java.util.Date
+import be.technifuture.eval.model.ExpenseWithType
+import java.text.SimpleDateFormat
 
 class ExpenseViewHolder(private var viewBinding: CellExpenseBinding) :
     RecyclerView.ViewHolder(viewBinding.root) {
 
-    fun bind(expense: Expense) {
+    fun bind(expense: ExpenseWithType) {
 
-        //var expListViewModel= ViewModelProvider(this).get(ExpenseListViewModel::class.java)
-        //expense.type?.let { expListViewModel.getTypeById(viewBinding.amount.context, it) }
+        val sdf = SimpleDateFormat("dd/MM/yyyy")
+        val currentDate = sdf.format(expense.exp.date)
+        //val currentDate = sdf.format(Date())
+        //sdf.format(expense.exp.date)
 
-        viewBinding.type.text = expense.type?.toString()
-        viewBinding.name.text = expense.name
-        viewBinding.date.text = expense.date.toString()
-        viewBinding.amount.text = expense.value.toString()
+
+        viewBinding.type.text = expense.type?.name
+        viewBinding.name.text = expense.exp.name
+        viewBinding.date.text = currentDate
+        viewBinding.amount.text = expense.exp.value.toString()
     }
 }
 
-class ExpenseAdapter(private var expense: MutableList<Expense>) :
+class ExpenseAdapter(private var expense: MutableList<ExpenseWithType>) :
     RecyclerView.Adapter<ExpenseViewHolder>() {
     private lateinit var binding: CellExpenseBinding
 
