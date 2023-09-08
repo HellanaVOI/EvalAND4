@@ -17,13 +17,5 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        CoroutineScope(Dispatchers.IO).launch {
-            ExpenseRepository.getAllExpense(this@MainActivity).collect { list ->
-                list.forEach { item ->
-                    item.value?.let { it1 -> Log.d("DEBUGG", it1.toString()) }
-                    item.date?.let { it1 -> Log.d("DEBUGG", it1.toString()) }
-                }
-            }
-        }
     }
 }

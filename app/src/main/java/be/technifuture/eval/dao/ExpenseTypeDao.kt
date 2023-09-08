@@ -1,5 +1,6 @@
 package be.technifuture.eval.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -14,10 +15,10 @@ interface ExpenseTypeDao {
     fun getCount(): Int
 
     @Query("SELECT * FROM ExpenseType")
-    fun getAll(): Flow<List<ExpenseType>>
+    fun getAll(): LiveData<List<ExpenseType>>
 
-    @Query("SELECT * FROM ExpenseType")
-    fun getExpense(): Flow<List<TypeWithExpense>>
+    @Query("SELECT * FROM ExpenseType WHERE typeId = :idType LIMIT 1")
+    fun getTypeById(idType: Long): LiveData<ExpenseType>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(type: ExpenseType)

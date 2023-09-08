@@ -13,5 +13,6 @@ data class Expense(
     val expId: Long = 0,
     val name: String? = null,
     val date: Long? = null,
-    val value: Float? = null
+    val value: Float? = null,
+    val type: Long? = null
 )

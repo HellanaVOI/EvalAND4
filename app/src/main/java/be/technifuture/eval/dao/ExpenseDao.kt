@@ -1,5 +1,6 @@
 package be.technifuture.eval.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -12,7 +13,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ExpenseDao {
     @Query("SELECT * FROM expense")
-    fun getAll(): Flow<List<Expense>>
+    fun getAll(): LiveData<List<Expense>>
 
     @Query("SELECT COUNT(*) FROM expense")
     fun getCount(): Int

@@ -5,20 +5,24 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import be.technifuture.eval.databinding.CellExpenseBinding
 import be.technifuture.eval.model.Expense
+import java.util.Date
 
 class ExpenseViewHolder(private var viewBinding: CellExpenseBinding) :
     RecyclerView.ViewHolder(viewBinding.root) {
 
     fun bind(expense: Expense) {
 
-        viewBinding.type.text = ""
+        //var expListViewModel= ViewModelProvider(this).get(ExpenseListViewModel::class.java)
+        //expense.type?.let { expListViewModel.getTypeById(viewBinding.amount.context, it) }
+
+        viewBinding.type.text = expense.type?.toString()
         viewBinding.name.text = expense.name
         viewBinding.date.text = expense.date.toString()
         viewBinding.amount.text = expense.value.toString()
     }
 }
 
-class CardListAdapter(private var expense: MutableList<Expense>) :
+class ExpenseAdapter(private var expense: MutableList<Expense>) :
     RecyclerView.Adapter<ExpenseViewHolder>() {
     private lateinit var binding: CellExpenseBinding
 
