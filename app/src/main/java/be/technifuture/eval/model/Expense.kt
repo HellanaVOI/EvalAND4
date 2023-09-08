@@ -11,6 +11,7 @@ import androidx.room.Relation
 data class Expense(
     @PrimaryKey(autoGenerate = true)
     val expId: Long = 0,
+    val name: String? = null,
     val date: Long? = null,
     val value: Float? = null
 )

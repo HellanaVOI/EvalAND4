@@ -25,12 +25,12 @@ class ExpenseRepository {
 
                 val expense = expDatabase!!.expenseDao().getCount()
                 if (expense == 0) {
-                    expDatabase!!.expenseDao().insert(Expense(date = 1694069949, value = 50f))
-                    expDatabase!!.expenseDao().insert(Expense(date = 1699343949, value = 14.50f))
-                    expDatabase!!.expenseDao().insert(Expense(date = 1573113549, value = 99.50f))
-                    expDatabase!!.expenseDao().insert(Expense(date = 1573545549, value = 12.10f))
-                    expDatabase!!.expenseDao().insert(Expense(date = 1668239949, value = 45f))
-                    expDatabase!!.expenseDao().insert(Expense(date = 1641023949, value = 28.99f))
+                    expDatabase!!.expenseDao().insert(Expense(name = "Test", date = 1694069949, value = 50f))
+                    expDatabase!!.expenseDao().insert(Expense(name = "Test", date = 1699343949, value = 14.50f))
+                    expDatabase!!.expenseDao().insert(Expense(name = "Test", date = 1573113549, value = 99.50f))
+                    expDatabase!!.expenseDao().insert(Expense(name = "Test", date = 1573545549, value = 12.10f))
+                    expDatabase!!.expenseDao().insert(Expense(name = "Test", date = 1668239949, value = 45f))
+                    expDatabase!!.expenseDao().insert(Expense(name = "Test", date = 1641023949, value = 28.99f))
                 }
 
             }
