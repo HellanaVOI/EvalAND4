@@ -26,12 +26,36 @@ class ExpenseRepository {
 
                 val expense = expDatabase!!.expenseDao().getCount()
                 if (expense == 0) {
-                    expDatabase!!.expenseDao().insert(Expense(name = "SUSHI", date = 1694069949, value = 50f, type = 0))
-                    expDatabase!!.expenseDao().insert(Expense(name = "ROBE", date = 1699343949, value = 14.50f, type = 1))
-                    expDatabase!!.expenseDao().insert(Expense(name = "CONVERSE", date = 1573113549, value = 99.50f, type = 2))
-                    expDatabase!!.expenseDao().insert(Expense(name = "LESSIVE", date = 1573545549, value = 12.10f, type = 1))
-                    expDatabase!!.expenseDao().insert(Expense(name = "AUTRE", date = 1668239949, value = 45f, type = 0))
-                    expDatabase!!.expenseDao().insert(Expense(name = "MAQUILLAGE", date = 1641023949, value = 28.99f, type = 2))
+                    expDatabase!!.expenseDao()
+                        .insert(Expense(name = "SUSHI", date = 1694069949, value = 50f, type = 0))
+                    expDatabase!!.expenseDao()
+                        .insert(Expense(name = "ROBE", date = 1699343949, value = 14.50f, type = 1))
+                    expDatabase!!.expenseDao().insert(
+                        Expense(
+                            name = "CONVERSE",
+                            date = 1573113549,
+                            value = 99.50f,
+                            type = 2
+                        )
+                    )
+                    expDatabase!!.expenseDao().insert(
+                        Expense(
+                            name = "LESSIVE",
+                            date = 1573545549,
+                            value = 12.10f,
+                            type = 1
+                        )
+                    )
+                    expDatabase!!.expenseDao()
+                        .insert(Expense(name = "AUTRE", date = 1668239949, value = 45f, type = 0))
+                    expDatabase!!.expenseDao().insert(
+                        Expense(
+                            name = "MAQUILLAGE",
+                            date = 1641023949,
+                            value = 28.99f,
+                            type = 2
+                        )
+                    )
                 }
 
             }
@@ -39,24 +63,39 @@ class ExpenseRepository {
         }
 
         fun getAllType(context: Context): LiveData<List<ExpenseType>> {
-            if(expDatabase == null) {
+            if (expDatabase == null) {
                 expDatabase = initializeDB(context)
             }
             return expDatabase!!.expenseTypeDao().getAll()
         }
 
         fun getTypeById(context: Context, id: Long): LiveData<ExpenseType> {
-            if(expDatabase == null) {
+            if (expDatabase == null) {
                 expDatabase = initializeDB(context)
             }
             return expDatabase!!.expenseTypeDao().getTypeById(id)
         }
 
         fun getAllExpense(context: Context): LiveData<List<Expense>> {
-            if(expDatabase == null) {
+            if (expDatabase == null) {
                 expDatabase = initializeDB(context)
             }
             return expDatabase!!.expenseDao().getAll()
+        }
+
+        fun insertExpense(
+            context: Context,
+            name: String,
+            date: Long,
+            value: Float,
+            type: Long,
+        ) {
+            expDatabase = initializeDB(context)
+            CoroutineScope(Dispatchers.IO).launch {
+                val exp =
+                    Expense(name = name, date = date, value = value, type = type)
+                val bookId = expDatabase!!.expenseDao().insert(exp)
+            }
         }
 
     }
